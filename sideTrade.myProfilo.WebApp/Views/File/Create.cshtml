@@ -1,0 +1,61 @@
+﻿@model sideTrade.myProfilo.webApp.Models.UploadFileViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="panel panel-default" style="box-shadow: 0 4px 8px 0 rgb(139, 63, 15), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+       
+        <div class="panel-body text-center">
+
+            <img src="" class="img-responsive" style="max-width:100px;display:-webkit-inline-box;" />
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-upload"></span></button>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("Create", "File", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(x => x.FileViewModel.ProfileId)
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="border:solid 10px; border-color:#525047; border-radius:6px;">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>                   
+                </div>
+
+                <div class="modal-body">
+                    <ul style="list-style:none;text-align:center;">
+                        <li>
+                            <img src="" class="img-responsive" style="max-width:100px;display:-webkit-inline-box;" />
+                        </li>
+
+                        <li>
+                            <input type="file" name="fileToUpload" style="margin-left: auto;margin-right:auto;" id="file" />
+                        </li>
+                    </ul>
+
+
+                    <div class="form-group" style="float:right;">
+                        <button type="submit" class="btn-submit" style="color: darkred;">Upload</button>
+                    </div>
+
+
+                    <div class="alert-warning text-center">
+                        Please select .CS to upload under 3 MB in Size.
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

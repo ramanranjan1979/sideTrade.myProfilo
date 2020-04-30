@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SideTrade_DevModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SideTrade_DevModelStoreContainer">
+    <EntitySet Name="FileManager" EntityType="SideTrade_DevModel.Store.FileManager" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notification" EntityType="SideTrade_DevModel.Store.Notification" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Login" EntityType="SideTrade_DevModel.Store.Login" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Profile" EntityType="SideTrade_DevModel.Store.Profile" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileMapping" EntityType="SideTrade_DevModel.Store.ProfileMapping" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileType" EntityType="SideTrade_DevModel.Store.ProfileType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Settings" EntityType="SideTrade_DevModel.Store.Settings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NotificationType" EntityType="SideTrade_DevModel.Store.NotificationType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Log" EntityType="SideTrade_DevModel.Store.Log" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LogType" EntityType="SideTrade_DevModel.Store.LogType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FileManagerType" EntityType="SideTrade_DevModel.Store.FileManagerType" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ProfileUpload" Association="SideTrade_DevModel.Store.FK_ProfileUpload">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="FileManager" EntitySet="FileManager" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileLogin" Association="SideTrade_DevModel.Store.FK_ProfileLogin">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileProfileMapping" Association="SideTrade_DevModel.Store.FK_ProfileProfileMapping">
+      <End Role="Profile" EntitySet="Profile" />
+      <End Role="ProfileMapping" EntitySet="ProfileMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileTypeProfileMapping" Association="SideTrade_DevModel.Store.FK_ProfileTypeProfileMapping">
+      <End Role="ProfileType" EntitySet="ProfileType" />
+      <End Role="ProfileMapping" EntitySet="ProfileMapping" />
+    </AssociationSet>
+    <AssociationSet Name="NotificationTypeNotification" Association="SideTrade_DevModel.Store.NotificationTypeNotification">
+      <End Role="NotificationType" EntitySet="NotificationType" />
+      <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="LogTypeLog" Association="SideTrade_DevModel.Store.LogTypeLog">
+      <End Role="LogType" EntitySet="LogType" />
+      <End Role="Log" EntitySet="Log" />
+    </AssociationSet>
+    <AssociationSet Name="FileManagerTypeFileManager" Association="SideTrade_DevModel.Store.FileManagerTypeFileManager">
+      <End Role="FileManagerType" EntitySet="FileManagerType" />
+      <End Role="FileManager" EntitySet="FileManager" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FileManager">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Mode" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="FileName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Comment" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileManagerTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SenderProfileId" Type="int" Nullable="false" />
+    <Property Name="RecipientProfileId" Type="int" Nullable="true" />
+    <Property Name="FromEmail" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="ToEmail" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReadOn" Type="datetime" Nullable="true" />
+    <Property Name="NotificationTypeId" Type="int" Nullable="false" />
+    <Property Name="IsHTML" Type="bit" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="true" />
+    <Property Name="IsLock" Type="bit" Nullable="true" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Profile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nchar" Nullable="true" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsInvited" Type="bit" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ProfileMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="false" />
+    <Property Name="ProfileTypeId" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime" Nullable="true" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotificationType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="TemplateName" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LogTypeId" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="ProfileId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="LogType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="FileManagerType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileType" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="MaxMBSize" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+  </EntityType>
+  <Association Name="FK_ProfileUpload">
+    <End Role="Profile" Type="SideTrade_DevModel.Store.Profile" Multiplicity="1" />
+    <End Role="FileManager" Type="SideTrade_DevModel.Store.FileManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileManager">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileLogin">
+    <End Role="Profile" Type="SideTrade_DevModel.Store.Profile" Multiplicity="1" />
+    <End Role="Login" Type="SideTrade_DevModel.Store.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileProfileMapping">
+    <End Role="Profile" Type="SideTrade_DevModel.Store.Profile" Multiplicity="1" />
+    <End Role="ProfileMapping" Type="SideTrade_DevModel.Store.ProfileMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileMapping">
+        <PropertyRef Name="ProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileTypeProfileMapping">
+    <End Role="ProfileType" Type="SideTrade_DevModel.Store.ProfileType" Multiplicity="1" />
+    <End Role="ProfileMapping" Type="SideTrade_DevModel.Store.ProfileMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileMapping">
+        <PropertyRef Name="ProfileTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NotificationTypeNotification">
+    <End Role="NotificationType" Type="SideTrade_DevModel.Store.NotificationType" Multiplicity="1" />
+    <End Role="Notification" Type="SideTrade_DevModel.Store.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NotificationType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="NotificationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LogTypeLog">
+    <End Role="LogType" Type="SideTrade_DevModel.Store.LogType" Multiplicity="1" />
+    <End Role="Log" Type="SideTrade_DevModel.Store.Log" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LogType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Log">
+        <PropertyRef Name="LogTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FileManagerTypeFileManager">
+    <End Role="FileManagerType" Type="SideTrade_DevModel.Store.FileManagerType" Multiplicity="1" />
+    <End Role="FileManager" Type="SideTrade_DevModel.Store.FileManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FileManagerType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FileManager">
+        <PropertyRef Name="FileManagerTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SideTrade_DevModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FileManager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_ProfileUpload" FromRole="FileManager" ToRole="Profile" />
+          <Property Name="FileName" Type="String" Unicode="true" MaxLength="Max" Nullable="true" />
+          <Property Name="Status" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <Property Name="Comment" Type="String" Unicode="true" MaxLength="Max" Nullable="true" />
+          <NavigationProperty Name="FileManagerType" Relationship="SideTrade_DevModel.FileManagerTypeFileManager" FromRole="FileManager" ToRole="FileManagerType" />
+          <Property Name="FileManagerTypeId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SenderProfileId" Type="Int32" Nullable="false" />
+          <Property Name="RecipientProfileId" Type="Int32" />
+          <Property Name="FromEmail" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <Property Name="ToEmail" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadOn" Type="DateTime" Precision="3" Nullable="true" />
+          <NavigationProperty Name="NotificationType" Relationship="SideTrade_DevModel.NotificationTypeNotification" FromRole="Notification" ToRole="NotificationType" />
+          <Property Name="NotificationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="IsHTML" Type="Boolean" Nullable="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsLock" Type="Boolean" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Profile_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_ProfileLogin" FromRole="Login" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsInvited" Type="Boolean" Nullable="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="FileManager" Relationship="Self.FK_ProfileUpload" FromRole="Profile" ToRole="FileManager" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_ProfileLogin" FromRole="Profile" ToRole="Login" />
+          <NavigationProperty Name="ProfileMapping" Relationship="Self.FK_ProfileProfileMapping" FromRole="Profile" ToRole="ProfileMapping" />
+        </EntityType>
+        <EntityType Name="ProfileMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProfileId" Type="Int32" Nullable="false" />
+          <Property Name="ProfileTypeId" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Self.FK_ProfileProfileMapping" FromRole="ProfileMapping" ToRole="Profile" />
+          <NavigationProperty Name="ProfileType" Relationship="Self.FK_ProfileTypeProfileMapping" FromRole="ProfileMapping" ToRole="ProfileType" />
+        </EntityType>
+        <EntityType Name="ProfileType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ModifiedOn" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProfileMapping" Relationship="Self.FK_ProfileTypeProfileMapping" FromRole="ProfileType" ToRole="ProfileMapping" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProfileUpload">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="FileManager" Type="Self.FileManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileManager">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileLogin">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Profile_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileProfileMapping">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="ProfileMapping" Type="Self.ProfileMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMapping">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileTypeProfileMapping">
+          <End Role="ProfileType" Type="Self.ProfileType" Multiplicity="1" />
+          <End Role="ProfileMapping" Type="Self.ProfileMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileMapping">
+              <PropertyRef Name="ProfileTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SideTrade_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FileManager" EntityType="Self.FileManager" />
+          <EntitySet Name="Notification" EntityType="SideTrade_DevModel.Notification" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" />
+          <EntitySet Name="ProfileMapping" EntityType="Self.ProfileMapping" />
+          <EntitySet Name="ProfileType" EntityType="Self.ProfileType" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" />
+          <AssociationSet Name="FK_ProfileUpload" Association="Self.FK_ProfileUpload">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="FileManager" EntitySet="FileManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileLogin" Association="Self.FK_ProfileLogin">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileProfileMapping" Association="Self.FK_ProfileProfileMapping">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="ProfileMapping" EntitySet="ProfileMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileTypeProfileMapping" Association="Self.FK_ProfileTypeProfileMapping">
+            <End Role="ProfileType" EntitySet="ProfileType" />
+            <End Role="ProfileMapping" EntitySet="ProfileMapping" />
+          </AssociationSet>
+          <EntitySet Name="NotificationType" EntityType="SideTrade_DevModel.NotificationType" />
+          <EntitySet Name="Log" EntityType="SideTrade_DevModel.Log" />
+          <EntitySet Name="LogType" EntityType="SideTrade_DevModel.LogType" />
+          <AssociationSet Name="NotificationTypeNotification" Association="SideTrade_DevModel.NotificationTypeNotification">
+            <End Role="NotificationType" EntitySet="NotificationType" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="LogTypeLog" Association="SideTrade_DevModel.LogTypeLog">
+            <End Role="LogType" EntitySet="LogType" />
+            <End Role="Log" EntitySet="Log" />
+          </AssociationSet>
+          <EntitySet Name="FileManagerType" EntityType="SideTrade_DevModel.FileManagerType" />
+          <AssociationSet Name="FileManagerTypeFileManager" Association="SideTrade_DevModel.FileManagerTypeFileManager">
+            <End Role="FileManagerType" EntitySet="FileManagerType" />
+            <End Role="FileManager" EntitySet="FileManager" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="NotificationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <NavigationProperty Name="Notification" Relationship="SideTrade_DevModel.NotificationTypeNotification" FromRole="NotificationType" ToRole="Notification" />
+          <Property Name="TemplateName" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="LogType" Relationship="SideTrade_DevModel.LogTypeLog" FromRole="Log" ToRole="LogType" />
+          <Property Name="LogTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="Max" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="ProfileId" Type="Int32" Nullable="true" />
+        </EntityType>
+        <EntityType Name="LogType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Log" Relationship="SideTrade_DevModel.LogTypeLog" FromRole="LogType" ToRole="Log" />
+          <Property Name="Name" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+        </EntityType>
+        <Association Name="NotificationTypeNotification">
+          <End Type="SideTrade_DevModel.NotificationType" Role="NotificationType" Multiplicity="1" />
+          <End Type="SideTrade_DevModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NotificationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="NotificationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LogTypeLog">
+          <End Type="SideTrade_DevModel.LogType" Role="LogType" Multiplicity="1" />
+          <End Type="SideTrade_DevModel.Log" Role="Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LogType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Log">
+              <PropertyRef Name="LogTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FileManagerType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileType" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <Property Name="MaxMBSize" Type="String" Nullable="false" Unicode="true" MaxLength="200" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="UpdatedOn" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="FileManager" Relationship="SideTrade_DevModel.FileManagerTypeFileManager" FromRole="FileManagerType" ToRole="FileManager" />
+        </EntityType>
+        <Association Name="FileManagerTypeFileManager">
+          <End Type="SideTrade_DevModel.FileManagerType" Role="FileManagerType" Multiplicity="1" />
+          <End Type="SideTrade_DevModel.FileManager" Role="FileManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileManagerType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FileManager">
+              <PropertyRef Name="FileManagerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SideTrade_DevModelStoreContainer" CdmEntityContainer="SideTrade_DBEntities">
+    <EntitySetMapping Name="FileManager">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.FileManager)">
+        <MappingFragment StoreEntitySet="FileManager">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="FileManagerTypeId" ColumnName="FileManagerTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notification">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.Notification)">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SenderProfileId" ColumnName="SenderProfileId" />
+          <ScalarProperty Name="RecipientProfileId" ColumnName="RecipientProfileId" />
+          <ScalarProperty Name="FromEmail" ColumnName="FromEmail" />
+          <ScalarProperty Name="ToEmail" ColumnName="ToEmail" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="ReadOn" ColumnName="ReadOn" />
+          <ScalarProperty Name="NotificationTypeId" ColumnName="NotificationTypeId" />
+          <ScalarProperty Name="IsHTML" ColumnName="IsHTML" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Login">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.Login)">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Profile_Id" ColumnName="Profile_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Profile">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.Profile)">
+        <MappingFragment StoreEntitySet="Profile">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsInvited" ColumnName="IsInvited" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileMapping">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.ProfileMapping)">
+        <MappingFragment StoreEntitySet="ProfileMapping">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+          <ScalarProperty Name="ProfileTypeId" ColumnName="ProfileTypeId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileType">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.ProfileType)">
+        <MappingFragment StoreEntitySet="ProfileType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ModifiedOn" ColumnName="ModifiedOn" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.Settings)">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationType">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.NotificationType)">
+        <MappingFragment StoreEntitySet="NotificationType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.Log)">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LogTypeId" ColumnName="LogTypeId" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LogType">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.LogType)">
+        <MappingFragment StoreEntitySet="LogType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileManagerType">
+      <EntityTypeMapping TypeName="IsTypeOf(SideTrade_DevModel.FileManagerType)">
+        <MappingFragment StoreEntitySet="FileManagerType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="MaxMBSize" ColumnName="MaxMBSize" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

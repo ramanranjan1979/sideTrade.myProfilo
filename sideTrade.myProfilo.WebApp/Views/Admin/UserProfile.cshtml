@@ -1,0 +1,157 @@
+﻿@model IEnumerable<sideTrade.myProfilo.webApp.Models.ProfileViewModel>
+
+@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Profile(s) List</h2>
+
+
+
+<td>
+    @Html.ActionLink(" ", "CreateProfile", null, new { @class = "btn btn-info btn-lg glyphicon glyphicon-plus-sign", @style = "float:right;" })
+</td>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.IsInvited)
+        </th>
+
+       
+    </tr>
+
+    @foreach (var item in Model.OrderByDescending(x => x.CreatedOn))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailAddress)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IsInvited)
+            </td>
+           
+
+            <td>
+                @*@Html.ActionLink("Edit", "EditProfile", new { id = item.Id, name = item.FirstName }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                @{
+                    if (!item.IsInvited.Value)
+                    {
+                    <td>
+                        <span class="glyphicon glyphicon-envelope" onclick="SendInvitationModal('@item.Id');"></span>
+                    </td>
+
+                    <td>
+                        <span class="glyphicon glyphicon-eye-open" onclick="PreviewInvitationModal('@item.Id');"></span>
+                    </td>
+                    }
+                    else
+                    {
+                        <td colspan="2"></td>
+                    }
+                }
+
+            </tr>
+                    }
+
+</table>
+
+<div class="modal fade" id="Confirmation_Popup" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" style="border:solid 20px; border-color:brown; border-radius:5px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" onclick="location.reload(true);">&times;</button>
+                <h4 style="text-align:center;">Invitation Message</h4>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    function SendInvitationModal(profileId) {
+        $("#modalBody").html("");
+        var data = { "profileId": profileId };
+        $.ajax({
+            url: "/Admin/SendInvitation",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                var list = $("#modalBody").append('<div style="border:solid 1px;padding:20px;"></div>').find('div');
+                list.append('<p style="text-align: center;font-weight: bold;">' + data + '</p>');
+            },
+            error: function () {
+                //alert("Error");
+            }
+        });
+
+        $('#Confirmation_Popup').modal('show');
+    }
+
+    function PreviewInvitationModal(profileId) {
+        $("#modalBody").html("");
+        var data = { "profileId": profileId };
+        $.ajax({
+            url: "/Admin/PreviewInvitation",
+            type: "POST",
+            data: JSON.stringify(data),
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                var list = $("#modalBody").append('<div style="border:solid 1px;padding:20px;"></div>').find('div');
+                list.append('<p style="text-align: center;font-weight: bold;">' + data + '</p>');
+            },
+            error: function () {
+                //alert("Error");
+            }
+        });
+
+        $('#Confirmation_Popup').modal('show');
+    }
+
+
+
+
+
+</script>

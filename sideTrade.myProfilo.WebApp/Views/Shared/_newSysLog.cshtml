@@ -1,0 +1,48 @@
+﻿@model IEnumerable<sideTrade.myProfilo.webApp.Models.SystemLogViewModel>
+
+<table class="table" style="color:darkred;">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogTypeId)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Value)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileId)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderByDescending(x => x.CreatedOn).Take(10))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogTypeId)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>*@
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileId)
+            </td>
+
+        </tr>
+    }
+
+</table>

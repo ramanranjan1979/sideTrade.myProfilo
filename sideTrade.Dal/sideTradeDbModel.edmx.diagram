@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e7861452446d425a8e79a8c702976600" Name="Diagram1">
+        <EntityTypeShape EntityType="SideTrade_DevModel.FileManager" Width="1.5" PointX="5.875" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.Notification" Width="1.5" PointX="6.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.Login" Width="1.5" PointX="3.5" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.Profile" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.ProfileMapping" Width="1.5" PointX="9.625" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.ProfileType" Width="1.5" PointX="4" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.Settings" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SideTrade_DevModel.FK_ProfileUpload" ManuallyRouted="false" />
+        <AssociationConnector Association="SideTrade_DevModel.FK_ProfileLogin" ManuallyRouted="false" />
+        <AssociationConnector Association="SideTrade_DevModel.FK_ProfileProfileMapping" ManuallyRouted="false" />
+        <AssociationConnector Association="SideTrade_DevModel.FK_ProfileTypeProfileMapping" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.NotificationType" Width="1.875" PointX="8.875" PointY="3" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.Log" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.LogType" Width="1.5" PointX="2" PointY="0.5" />
+        <AssociationConnector Association="SideTrade_DevModel.NotificationTypeNotification" />
+        <AssociationConnector Association="SideTrade_DevModel.LogTypeLog" />
+        <EntityTypeShape EntityType="SideTrade_DevModel.FileManagerType" Width="1.5" PointX="1" PointY="2.375" />
+        <AssociationConnector Association="SideTrade_DevModel.FileManagerTypeFileManager" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,59 @@
+﻿@model sideTrade.myProfilo.webApp.Models.ProfileViewModel
+
+    @{
+        ViewBag.Title = "My Profile";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+<h2>My Profile</h2>
+
+    @using (Html.BeginForm("UpdateProfile", "Admin", FormMethod.Post, new { @class = "form-horizontal", role = "form", ID = "FRM_MYPROFILE", @autocomplete = "off" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="heading text-center col-sm-8 col-sm-offset-2">
+                    <h2>Welcome Aboard @Model.FirstName!</h2>
+                </div>
+            </div>
+            <div class="contact-form">
+
+                <div class="col-sm-12">
+
+
+
+
+                    <div class="form-group col-sm-12">
+                        @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "First Name", maxlength = "50", @class = "form-control", @style = "margin-left:auto;margin-right:auto;background-color:brown;color: white;" })
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Last Name", maxlength = "50", @class = "form-control", @style = "margin-left: auto;margin-right:auto;background-color:brown;color: white;" })
+                    </div>
+
+                    <div class="form-group col-sm-12">
+                        @Html.TextBoxFor(m => m.EmailAddress, new { @placeholder = "Email Address", maxlength = "100", @readonly = true,  @class = "form-control", @style = "margin-left: auto;margin-right:auto;background-color:brown;color: white;" })
+                    </div>
+
+                    @*<div class="form-group col-sm-12 text-center">
+                        <input type="submit" class="btn-submit" style="width:50%;margin-left:auto;margin-right: auto;background-color:brown;color:white;" value="Update Profile" />
+                    </div>*@
+                </div>
+
+                <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;">
+                    <p style="font-size: 15px; color:red; font-weight: bold; font-style: normal;" id="message">
+                        @ViewBag.Message
+                    </p>
+                </div>
+
+                <div class="col-sm-12 text-center text-danger">
+                    @Html.ValidationSummary()
+                </div>
+            </div>
+        </div>
+
+    }
+

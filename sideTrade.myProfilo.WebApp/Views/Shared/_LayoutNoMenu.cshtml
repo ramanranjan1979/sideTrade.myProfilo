@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - sideTrade myProfio</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Images/Fav-Icon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/Images/Fav-Icon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Images/Fav-Icon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Images/Fav-Icon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Images/Fav-Icon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Images/Fav-Icon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Images/Fav-Icon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Images/Fav-Icon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Images/Fav-Icon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Images/Fav-Icon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/Images/Fav-Icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/Images/Fav-Icon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/Images/Fav-Icon/favicon-16x16.png">
+    <link rel="manifest" href="~/Images/Fav-Icon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+</head>
+<body>   
+    <div class="container body-content">
+
+        <div>
+            <p align="center">
+                <a href="http://myprofilowebapp.modizson.com/" target="_blank"><img align="middle" src="../Images/site-logo.png" style="width: 100px;" width="100" alt="site Logo" /></a>
+            </p>
+        </div>
+
+
+        @RenderBody()
+        <hr />
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - sideTrade myProfio</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

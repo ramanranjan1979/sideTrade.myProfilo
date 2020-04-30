@@ -1,0 +1,95 @@
+﻿@model IEnumerable<sideTrade.myProfilo.webApp.Models.FileManagerViewModel>
+
+
+
+    <table class="table" style="color:darkred;width:50em;overflow-x: auto;white-space: nowrap;">        
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfileId)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.OrderByDescending(x => x.CreatedOn).Take(10))
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mode)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ProfileId)
+            </td>
+
+
+            <td>
+                <span class="glyphicon glyphicon-info-sign" onclick="ShowFileDetailModal('@item.Id');"></span>
+            </td>
+
+        </tr>
+        }
+
+    </table>
+
+
+    <div class="modal fade" id="File_Detail_Popup" role="dialog">
+        <div class="modal-dialog" style="border:solid 20px; border-color:#5bc0de; border-radius:5px;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 style="text-align:center;">File Details</h4>
+                </div>
+                <div class="modal-body" id="modalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function ShowFileDetailModal(fileId) {
+            $("#modalBody").html("");
+            var data = { "fileId": fileId };
+            $.ajax({
+                url: "/file/FileContentDetails",
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (data) {
+                    var list = $("#modalBody").append('<div style="border:solid 1px;padding:20px;"></div>').find('div');
+                    list.append('<p style="text-align: center;font-weight: bold;">' + data + '</p>');
+                },
+                error: function () {
+                    //alert("Error");
+                }
+            });
+
+            $('#File_Detail_Popup').modal('show');
+        }
+
+    </script>

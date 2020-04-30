@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sideTrade.myProfilo.webApi", "sideTrade.myProfilo.webApi\sideTrade.myProfilo.webApi.csproj", "{26D47281-9F80-454D-A0EA-10B5D48B44A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sideTrade.myProfilo.WebApp", "sideTrade.myProfilo.WebApp\sideTrade.myProfilo.WebApp.csproj", "{A4A553B6-3C81-472F-BAD2-9FD699D45F86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sideTrade.Dal", "sideTrade.Dal\sideTrade.Dal.csproj", "{9E051618-0514-488A-8653-16AEB7AF1812}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "webApi.Test", "webApi.Test\webApi.Test.csproj", "{75198DCE-75B6-425D-A1E0-0ECBCEB8DD66}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26D47281-9F80-454D-A0EA-10B5D48B44A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D47281-9F80-454D-A0EA-10B5D48B44A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D47281-9F80-454D-A0EA-10B5D48B44A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D47281-9F80-454D-A0EA-10B5D48B44A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4A553B6-3C81-472F-BAD2-9FD699D45F86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4A553B6-3C81-472F-BAD2-9FD699D45F86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4A553B6-3C81-472F-BAD2-9FD699D45F86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4A553B6-3C81-472F-BAD2-9FD699D45F86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E051618-0514-488A-8653-16AEB7AF1812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E051618-0514-488A-8653-16AEB7AF1812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E051618-0514-488A-8653-16AEB7AF1812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E051618-0514-488A-8653-16AEB7AF1812}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75198DCE-75B6-425D-A1E0-0ECBCEB8DD66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75198DCE-75B6-425D-A1E0-0ECBCEB8DD66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75198DCE-75B6-425D-A1E0-0ECBCEB8DD66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75198DCE-75B6-425D-A1E0-0ECBCEB8DD66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://modiinfolimited.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = sideTrade.myProfilo.webApi\\sideTrade.myProfilo.webApi.csproj
+		SccProjectName1 = sideTrade.myProfilo.webApi
+		SccLocalPath1 = sideTrade.myProfilo.webApi
+		SccProjectUniqueName2 = sideTrade.myProfilo.WebApp\\sideTrade.myProfilo.WebApp.csproj
+		SccProjectName2 = sideTrade.myProfilo.WebApp
+		SccLocalPath2 = sideTrade.myProfilo.WebApp
+		SccProjectUniqueName3 = sideTrade.Dal\\sideTrade.Dal.csproj
+		SccProjectName3 = sideTrade.Dal
+		SccLocalPath3 = sideTrade.Dal
+		SccProjectUniqueName4 = webApi.Test\\webApi.Test.csproj
+		SccProjectName4 = webApi.Test
+		SccLocalPath4 = webApi.Test
+	EndGlobalSection
+EndGlobal
